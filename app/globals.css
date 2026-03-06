@@ -1,0 +1,386 @@
+:root {
+  --bg: #020617;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --panel: #0f172a;
+  --line: rgba(255, 255, 255, 0.12);
+  --orange: #f97316;
+  --orange-dark: #ea580c;
+  --cyan: #06b6d4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.page {
+  min-height: 100vh;
+}
+
+.siteHeader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  background: rgba(2, 6, 23, 0.72);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.logo {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.topNav {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.navButton {
+  background: rgba(255, 255, 255, 0.04);
+  color: #f8fafc;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+}
+
+.navButton.isOpen,
+.navButton:hover {
+  border-color: rgba(249, 115, 22, 0.7);
+  background: rgba(249, 115, 22, 0.15);
+}
+
+.dropdownPanel {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  min-width: 260px;
+  background: rgba(15, 23, 42, 0.97);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.5rem;
+  display: none;
+  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.35);
+}
+
+.dropdownPanel.show {
+  display: grid;
+}
+
+.dropdownPanel a {
+  color: #e2e8f0;
+  text-decoration: none;
+  padding: 0.6rem 0.7rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.dropdownPanel a:hover {
+  background: rgba(148, 163, 184, 0.14);
+}
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding-top: 90px;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+}
+
+.blobOrange {
+  width: 24rem;
+  height: 24rem;
+  left: 12%;
+  top: 18%;
+  background: rgba(249, 115, 22, 0.35);
+}
+
+.blobCyan {
+  width: 30rem;
+  height: 30rem;
+  right: 8%;
+  bottom: 8%;
+  background: rgba(6, 182, 212, 0.2);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(2, 6, 23, 0.72) 0%, rgba(2, 6, 23, 0.92) 100%);
+}
+
+.heroInner {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.badge {
+  display: inline-flex;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.heroContent h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(2.2rem, 5.5vw, 4.6rem);
+  line-height: 1.06;
+}
+
+.heroContent h1 span {
+  background: linear-gradient(90deg, #fb923c, #f97316);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.heroContent p {
+  max-width: 650px;
+  color: var(--muted);
+  font-size: 1.08rem;
+  line-height: 1.6;
+}
+
+.heroActions {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.btn {
+  text-decoration: none;
+  border-radius: 12px;
+  padding: 0.88rem 1.15rem;
+  font-weight: 600;
+}
+
+.btnPrimary {
+  color: #fff;
+  background: var(--orange);
+}
+
+.btnPrimary:hover {
+  background: var(--orange-dark);
+}
+
+.btnGhost {
+  color: #f8fafc;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.heroVisual {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  max-width: 460px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: spin 18s linear infinite;
+}
+
+.ringTwo {
+  inset: 26px;
+  border-color: rgba(249, 115, 22, 0.42);
+  animation-duration: 13s;
+  animation-direction: reverse;
+}
+
+.ringThree {
+  inset: 54px;
+  border-color: rgba(6, 182, 212, 0.3);
+  animation-duration: 9s;
+}
+
+.floatingCard {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(280px, 82%);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 18px;
+  padding: 1.1rem;
+  backdrop-filter: blur(14px);
+  animation: bob 4s ease-in-out infinite;
+}
+
+.label {
+  font-weight: 700;
+  margin: 0;
+}
+
+.status {
+  color: var(--muted);
+  margin: 0.4rem 0 0.8rem;
+}
+
+.progress {
+  height: 8px;
+  background: rgba(148, 163, 184, 0.28);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress span {
+  display: block;
+  width: 68%;
+  height: 100%;
+  background: linear-gradient(90deg, #fb923c, #f97316);
+}
+
+.offer,
+.highlights,
+.footer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.2rem 2rem;
+}
+
+.offer h2 {
+  margin-top: 0;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.card,
+.highlights article {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1rem;
+}
+
+.card p,
+.highlights p,
+.footer p {
+  color: var(--muted);
+}
+
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.footer {
+  padding-bottom: 2.8rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translate(-50%, calc(-50% - 8px));
+  }
+
+  50% {
+    transform: translate(-50%, calc(-50% + 8px));
+  }
+}
+
+@media (max-width: 980px) {
+  .heroInner {
+    grid-template-columns: 1fr;
+    padding-top: 1.5rem;
+    padding-bottom: 2rem;
+  }
+
+  .heroVisual {
+    max-width: 320px;
+  }
+}
+
+@media (max-width: 760px) {
+  .siteHeader {
+    position: static;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: 2.4rem;
+  }
+
+  .siteHeader,
+  .heroInner,
+  .offer,
+  .highlights,
+  .footer {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .dropdownPanel {
+    right: auto;
+    left: 0;
+    min-width: 220px;
+  }
+}
