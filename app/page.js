@@ -28,86 +28,133 @@ const menuItems = [
   }
 ];
 
-const cards = [
+const highlights = [
   {
-    title: 'Kompozyty nowej generacji',
-    text: 'Lżejsze i trwalsze zamienniki stali dla projektów infrastrukturalnych i przemysłowych.'
+    title: 'Inżynieria kompozytów',
+    text: 'Projektujemy i wdrażamy systemy zbrojenia o wysokiej trwałości i niskiej masie.'
   },
   {
-    title: 'Integracja DFOS',
-    text: 'Ciągły monitoring konstrukcji i szybsze decyzje serwisowe oparte na danych.'
+    title: 'Technologie DFOS',
+    text: 'Monitoring konstrukcji w czasie rzeczywistym i precyzyjna diagnostyka stanu obiektów.'
   },
   {
-    title: 'Kompleksowa realizacja',
-    text: 'Od materiałów i maszyn po usługi betonowe i prefabrykację na zamówienie.'
+    title: 'Kompletna oferta',
+    text: 'Od produktów i materiałów po usługi betonu towarowego i prefabrykację.'
   }
 ];
 
 export default function HomePage() {
-  const [activeMenu, setActiveMenu] = useState('Produkty');
+  const [openMenu, setOpenMenu] = useState('Produkty');
 
   return (
-    <main>
-      <header className="hero" id="top">
-        <nav className="topNav">
-          <a className="logo" href="#top" aria-label="Reinbar - strona główna">
-            REINBAR
-          </a>
-          <ul>
-            {menuItems.map((item) => (
-              <li key={item.title}>
-                <button
-                  className={activeMenu === item.title ? 'active' : ''}
-                  onClick={() => setActiveMenu(item.title)}
-                >
-                  {item.title}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </nav>
+    <main className="page">
+      <header className="siteHeader">
+        <a className="logo" href="#top" aria-label="Reinbar - strona główna">
+          REINBAR
+        </a>
 
-        <section className="heroContent">
-          <p className="eyebrow">Rebranding 2026</p>
-          <h1>Nowoczesna platforma Reinbar dla inżynierii kompozytowej i betonowej</h1>
-          <p>
-            Projektujemy nową jakość komunikacji marki: szybka nawigacja, rozbudowana oferta,
-            sekcja projektowa i ekspercka strefa wiedzy.
-          </p>
-          <a href="#oferta" className="cta">
-            Poznaj ofertę
-          </a>
-        </section>
+        <nav className="topNav" aria-label="Nawigacja główna">
+          {menuItems.map((item) => (
+            <div
+              className="dropdown"
+              key={item.title}
+              onMouseEnter={() => setOpenMenu(item.title)}
+              onFocus={() => setOpenMenu(item.title)}
+            >
+              <button
+                className={`navButton ${openMenu === item.title ? 'isOpen' : ''}`}
+                onClick={() => setOpenMenu((prev) => (prev === item.title ? '' : item.title))}
+                aria-expanded={openMenu === item.title}
+              >
+                {item.title}
+                <span className="chevron">▾</span>
+              </button>
+
+              <div className={`dropdownPanel ${openMenu === item.title ? 'show' : ''}`}>
+                {item.links.map((link) => (
+                  <a href="#oferta" key={link}>
+                    {link}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))}
+        </nav>
       </header>
 
-      <section className="menuShowcase" id="oferta">
-        <h2>{activeMenu}</h2>
-        <div className="pillGrid">
+      <section className="hero" id="top">
+        <div className="heroBg" aria-hidden>
+          <div className="blob blobOrange" />
+          <div className="blob blobCyan" />
+          <div className="overlay" />
+        </div>
+
+        <div className="heroInner">
+          <div className="heroContent">
+            <div className="badge">Deep Tech w Budownictwie</div>
+
+            <h1>
+              Rewolucja w <br />
+              <span>Zbrojeniu Betonu</span>
+            </h1>
+
+            <p>
+              Łączymy zaawansowaną inżynierię materiałową z przemysłem. Tworzymy inteligentne
+              kompozyty, technologię pultruzji i ciągłe czujniki pomiarowe (DFOS) dla
+              budownictwa przyszłości.
+            </p>
+
+            <div className="heroActions">
+              <a className="btn btnPrimary" href="#oferta">
+                Poznaj technologie →
+              </a>
+              <a className="btn btnGhost" href="#kontakt">
+                Skontaktuj się z ekspertem
+              </a>
+            </div>
+          </div>
+
+          <div className="heroVisual" aria-hidden>
+            <div className="ring ringOne" />
+            <div className="ring ringTwo" />
+            <div className="ring ringThree" />
+            <div className="floatingCard">
+              <p className="label">Smart Structures</p>
+              <p className="status">DFOS Sensor Active</p>
+              <div className="progress">
+                <span />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="offer" id="oferta">
+        <h2>{openMenu || 'Produkty'}</h2>
+        <div className="cardGrid">
           {menuItems
-            .find((item) => item.title === activeMenu)
+            .find((item) => item.title === (openMenu || 'Produkty'))
             .links.map((link) => (
-              <article key={link} className="pillCard">
+              <article className="card" key={link}>
                 <h3>{link}</h3>
-                <p>
-                  Dedykowana podstrona produktu/usługi z opisem technicznym, parametrami i CTA do
-                  kontaktu.
-                </p>
+                <p>Dedykowana podstrona z parametrami, zastosowaniami i CTA do doradcy technicznego.</p>
               </article>
             ))}
         </div>
       </section>
 
-      <section className="valueSection">
-        <h2>Dlaczego nowa strona Reinbar?</h2>
-        <div className="valueGrid">
-          {cards.map((card) => (
-            <article key={card.title}>
-              <h3>{card.title}</h3>
-              <p>{card.text}</p>
-            </article>
-          ))}
-        </div>
+      <section className="highlights" id="projekty">
+        {highlights.map((item) => (
+          <article key={item.title}>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
       </section>
+
+      <footer id="kontakt" className="footer">
+        <p>Reinbar — Nowa generacja rozwiązań dla budownictwa i infrastruktury.</p>
+      </footer>
     </main>
   );
 }
