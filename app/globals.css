@@ -1,0 +1,127 @@
+:root {
+  color-scheme: light;
+  --bg: #f6f8fb;
+  --text: #0f172a;
+  --primary: #0d9488;
+  --primary-dark: #0f766e;
+  --card: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.hero {
+  background: radial-gradient(circle at top right, #5eead4 0%, #0f172a 45%, #020617 100%);
+  color: #f8fafc;
+  padding: 2rem 3rem 4rem;
+}
+
+.topNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-weight: 800;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 0.08em;
+}
+
+.topNav ul {
+  display: flex;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.topNav button {
+  border: 1px solid #6ee7b7;
+  background: transparent;
+  color: #e2e8f0;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.topNav button:hover,
+.topNav button.active {
+  background: #14b8a6;
+  color: #042f2e;
+}
+
+.heroContent {
+  max-width: 760px;
+  margin-top: 3.5rem;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  opacity: 0.85;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 3.6vw, 3.2rem);
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.cta {
+  display: inline-block;
+  margin-top: 1rem;
+  background: var(--primary);
+  color: #f0fdfa;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 0.85rem 1.2rem;
+  border-radius: 0.7rem;
+}
+
+.menuShowcase,
+.valueSection {
+  padding: 3rem;
+}
+
+.pillGrid,
+.valueGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.pillCard,
+.valueGrid article {
+  background: var(--card);
+  border-radius: 1rem;
+  padding: 1.1rem;
+  box-shadow: 0 8px 22px rgba(2, 6, 23, 0.07);
+}
+
+.valueGrid h3,
+.pillCard h3 {
+  margin-top: 0;
+}
+
+@media (max-width: 640px) {
+  .hero,
+  .menuShowcase,
+  .valueSection {
+    padding: 1.3rem;
+  }
+}
